@@ -6,7 +6,7 @@
 /*   By: wwan-taj <wwan-taj@student.42kl.edu.my>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/16 17:44:15 by wwan-taj          #+#    #+#             */
-/*   Updated: 2022/04/16 19:06:16 by wwan-taj         ###   ########.fr       */
+/*   Updated: 2022/04/16 19:09:27 by wwan-taj         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ void	*eat(void	*ophilo)
 
 	nphilo = ophilo;
 	pthread_mutex_lock(&nphilo->fork);
-	printf("Eating\n");
+	printf("Eating!\n");
 	sleep(3);
 	printf("Done eating!\n");
 	pthread_mutex_unlock(&nphilo->fork);
