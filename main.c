@@ -6,46 +6,29 @@
 /*   By: wwan-taj <wwan-taj@student.42kl.edu.my>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/16 17:44:15 by wwan-taj          #+#    #+#             */
-/*   Updated: 2022/04/16 19:09:27 by wwan-taj         ###   ########.fr       */
+/*   Updated: 2022/04/17 15:21:55 by wwan-taj         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
 
-void	*eat(void	*ophilo)
+void	*routine(void	*ophilo)
 {
-	t_philo	*nphilo;
-
-	nphilo = ophilo;
-	pthread_mutex_lock(&nphilo->fork);
-	printf("Eating!\n");
-	sleep(3);
-	printf("Done eating!\n");
-	pthread_mutex_unlock(&nphilo->fork);
-	return (0);
+	
 }
 
 void	create_philo(t_life *life)
 {
 	int			i;
 
-	life->philos = malloc(sizeof(t_philo) * life->philo_num);
-	i = 0;
-	while (i < life->philo_num)
-		pthread_mutex_init(&life->philos[i++].fork, NULL);
+	life->diners = malloc(sizeof(t_philo) * life->philo_num);
 	i = 0;
 	while (i < life->philo_num)
 	{
-		pthread_create(&life->philos[i].person, NULL, &eat, &life->philos[i]);
+		pthread_create(&(life->diners[i].philo), NULL, &routine, &(life->diners[i]));
 		i++;
 	}
-	i = 0;
-	while (i < life->philo_num)
-		pthread_join(life->philos[i++].person, NULL);
-	i = 0;
-	while (i < life->philo_num)
-		pthread_mutex_destroy(&life->philos[i++].fork);
-	free(life->philos);
+	free(life->diners);
 }
 
 void	initialize(t_life *life, int	ac, char **av)

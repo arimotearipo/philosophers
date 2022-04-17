@@ -6,7 +6,7 @@
 /*   By: wwan-taj <wwan-taj@student.42kl.edu.my>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/16 17:43:55 by wwan-taj          #+#    #+#             */
-/*   Updated: 2022/04/16 19:01:58 by wwan-taj         ###   ########.fr       */
+/*   Updated: 2022/04/17 15:21:25 by wwan-taj         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,21 +17,28 @@
 # include <stdlib.h>
 # include <pthread.h>
 # include <unistd.h>
+# include <sys/time.h>
 
 typedef struct s_philo
 {
-	pthread_t		person;
-	pthread_mutex_t	fork;
+	pthread_t		philo;
+	int				philo_id;
+	int				l_fork_id;
+	int				r_fork_id;
+	int				times_ate;
+	struct	timeval	last_ate;
 }				t_philo;
 
 typedef struct s_life
 {
-	t_philo			*philos;
+	t_philo			*diners;
 	int				philo_num;
 	int				time_to_die;
 	int				time_to_eat;
 	int				time_to_sleep;
 	int				eat_num;
+	pthread_mutex_t	eat;
+	struct	timeval	starttime;
 }				t_life;
 
 int	ft_atoi(const char *s);
