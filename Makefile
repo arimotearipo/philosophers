@@ -1,4 +1,4 @@
-SRCS = main.c ft_atoi.c
+SRCS = main.c ft_atoi.c startlife.c setphilo.c
 
 OBJS = $(SRCS:.c=.o)
 

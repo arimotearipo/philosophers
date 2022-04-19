@@ -1,23 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   startlife.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: wwan-taj <wwan-taj@student.42kl.edu.my>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/04/16 17:44:15 by wwan-taj          #+#    #+#             */
-/*   Updated: 2022/04/18 15:54:21 by wwan-taj         ###   ########.fr       */
+/*   Created: 2022/04/18 11:05:46 by wwan-taj          #+#    #+#             */
+/*   Updated: 2022/04/18 15:51:09 by wwan-taj         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
 
-int	main(int ac, char **av)
+void	*routine(void	*context)
 {
-	t_life	life;
+	(void)context;
+	return (NULL);
+}
 
-	if (ac == 5 || ac == 6)
-		setlife(&life, ac, av);
-	startlife(&life);
-	return (0);
+void	startlife(t_life *life)
+{
+	int	i;
+
+	i = 0;
+	while (i < life->philo_num)
+	{
+		pthread_join(life->philos[i].th, NULL);
+		i++;
+	}
 }

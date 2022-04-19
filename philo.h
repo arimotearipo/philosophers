@@ -6,7 +6,7 @@
 /*   By: wwan-taj <wwan-taj@student.42kl.edu.my>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/16 17:43:55 by wwan-taj          #+#    #+#             */
-/*   Updated: 2022/04/18 10:26:09 by wwan-taj         ###   ########.fr       */
+/*   Updated: 2022/04/18 16:00:27 by wwan-taj         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,11 +21,10 @@
 
 typedef struct s_philo
 {
-	pthread_t		person;
+	pthread_t		th;
 	int				person_id;
 	int				fork_id;
 	int				nextfork_id;
-	int				fork_avalaible;
 	int				times_ate;
 	struct timeval	last_ate;
 }				t_philo;
@@ -33,15 +32,18 @@ typedef struct s_philo
 typedef struct s_life
 {
 	t_philo			*philos;
+	pthread_mutex_t	*forks;
 	int				philo_num;
 	int				time_to_die;
 	int				time_to_eat;
 	int				time_to_sleep;
 	int				eat_num;
-	pthread_mutex_t	eat;
 	struct timeval	starttime;
 }				t_life;
 
-int	ft_atoi(const char *s);
+int		ft_atoi(const char *s);
+void	setlife(t_life *life, int ac, char **av);
+void	*routine(void	*life_axed);
+void	startlife(t_life *life);
 
 #endif
