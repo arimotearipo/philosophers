@@ -6,7 +6,7 @@
 /*   By: wwan-taj <wwan-taj@student.42kl.edu.my>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/16 17:43:55 by wwan-taj          #+#    #+#             */
-/*   Updated: 2022/04/19 19:59:18 by wwan-taj         ###   ########.fr       */
+/*   Updated: 2022/04/19 20:55:38 by wwan-taj         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,9 +50,8 @@ typedef struct s_life
 	int				time_to_eat;
 	int				time_to_sleep;
 	int				eat_num;
+	int				death;
 	pthread_t		deaththread;
-	// pthread_mutex_t	varlock;
-	// int				philoptr;
 }				t_life;
 
 int			ft_atoi(const char *s);
@@ -61,7 +60,7 @@ void		msleep(int n);
 void		philo_eat(t_philo *philo);
 void		philo_think(t_philo *philo);
 void		philo_sleep(t_philo *philo);
-// void		*check_death(void *life_axed);
-void		check_death(t_life *life);
+void		*check_death(void *life_axed);
+// int			check_death(t_life *life);
 
 #endif

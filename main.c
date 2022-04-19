@@ -6,30 +6,33 @@
 /*   By: wwan-taj <wwan-taj@student.42kl.edu.my>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/16 17:44:15 by wwan-taj          #+#    #+#             */
-/*   Updated: 2022/04/19 19:59:56 by wwan-taj         ###   ########.fr       */
+/*   Updated: 2022/04/19 21:05:14 by wwan-taj         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
 
-void	*function(void	*philo_axed)
+void	*routine(void	*philo_axed)
 {
 	t_philo		*philo;
-	// int		i;
 
 	philo = (t_philo *)philo_axed;
-	// pthread_mutex_lock(&life->varlock);
-	// i = life->philoptr++;
-	// pthread_mutex_unlock(&life->varlock);
-	philo_think(philo);
-	pthread_mutex_lock(&(philo->lock));
-	pthread_mutex_lock(philo->nextlock);
-	printf(BLU "%lld %d has taken a fork\n", ft_time(), philo->id);
-	printf(BLU "%lld %d has taken a fork\n", ft_time(), philo->id);
-	philo_eat(philo);
-	pthread_mutex_unlock(&(philo->lock));
-	pthread_mutex_unlock(philo->nextlock);
-	philo_sleep(philo);
+	// printf("Time entered %lld\n", ft_time());
+	while (1)
+	;
+	// philo->lastate = ft_time();
+	// while (philo->life->death == 0)
+	// {	
+	// 	philo_think(philo);
+	// 	pthread_mutex_lock(&(philo->lock));
+	// 	pthread_mutex_lock(philo->nextlock);
+	// 	printf(BLU "%lld %d has taken a fork\n", ft_time(), philo->id);
+	// 	printf(BLU "%lld %d has taken a fork\n", ft_time(), philo->id);
+	// 	philo_eat(philo);
+	// 	pthread_mutex_unlock(&(philo->lock));
+	// 	pthread_mutex_unlock(philo->nextlock);
+	// 	philo_sleep(philo);
+	// }
 	return (NULL);
 }
 
@@ -38,12 +41,12 @@ void	join_threads(t_life	*life)
 	int	i;
 
 	i = 0;
-	// pthread_join(life->deaththread, NULL);
 	while (i < life->philo_num)
 	{
 		pthread_join(life->philos[i].thread, NULL);
 		i++;
 	}
+	pthread_join(life->deaththread, NULL);
 }
 
 void	create_threads(t_life *life)
@@ -53,24 +56,17 @@ void	create_threads(t_life *life)
 	i = 0;
 	while (i < life->philo_num)
 	{
-		pthread_create(&(life->philos[i].thread), NULL, &function, &(life->philos[i]));
+		pthread_create(&(life->philos[i].thread), NULL, &routine, &(life->philos[i]));
 		i++;
 	}
-	i = 0;
-	while (i < life->philo_num)
-	{
-		pthread_join(life->philos[i].thread, NULL);
-		i++;
-	}
-	// pthread_create(&(life->deaththread), NULL, &check_death, life);
-	// pthread_join(life->deaththread, NULL);
+	pthread_create(&(life->deaththread), NULL, &check_death, life);
 }
 
 void	set_rules(t_life *life, int	ac, char **av)
 {
 	int	i;
 
-	// life->philoptr = 0;
+	life->death = 0;
 	life->philo_num = ft_atoi(av[1]);
 	life->time_to_die = ft_atoi(av[2]);
 	life->time_to_eat = ft_atoi(av[3]);
@@ -117,9 +113,12 @@ int	main(int ac, char **av)
 	{
 		set_rules(&life, ac, av);
 		create_threads(&life);
+		// while (1)
+		// {
+		// 	if (!check_death(&life))
+		// 		return (0);
+		// }
 		join_threads(&life);
-		while (1)
-			check_death(&life);
 		destroy_mutex(&life);
 		return (0);
 	}
