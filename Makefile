@@ -1,4 +1,4 @@
-SRCS = main.c ft_atoi.c
+SRCS = main.c ft_atoi.c routine.c time.c death_thread.c
 
 OBJS = $(SRCS:.c=.o)
 
@@ -10,7 +10,7 @@ FLAGS = -Wall -Wextra -Werror
 
 NAME = philo
 
-all:		$(LIBFT) $(NAME)
+all:		$(NAME)
 
 $(NAME):	$(SRCS)
 			$(CC) $(FLAGS) $(SRCS) -o $(NAME)

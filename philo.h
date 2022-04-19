@@ -6,7 +6,7 @@
 /*   By: wwan-taj <wwan-taj@student.42kl.edu.my>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/16 17:43:55 by wwan-taj          #+#    #+#             */
-/*   Updated: 2022/04/16 19:01:58 by wwan-taj         ###   ########.fr       */
+/*   Updated: 2022/04/19 19:59:18 by wwan-taj         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,11 +17,29 @@
 # include <stdlib.h>
 # include <pthread.h>
 # include <unistd.h>
+# include <sys/time.h>
+
+# define BLK "\033[0;30m"
+# define RED "\033[0;31m"
+# define GRN "\033[0;32m"
+# define YEL "\033[0;33m"
+# define MAG "\e[0;35m"
+# define BLU "\033[0;34m"
+# define PUR "\033[0;35m"
+# define CYN "\033[0;36m"
+# define WHT "\e[0;37m"
 
 typedef struct s_philo
 {
-	pthread_t		person;
-	pthread_mutex_t	fork;
+	int				id;
+	long long		starttime;
+	long long		lastate;
+	int				dead;
+	int				eaten;
+	struct s_life	*life;
+	pthread_t		thread;
+	pthread_mutex_t	lock;
+	pthread_mutex_t	*nextlock;
 }				t_philo;
 
 typedef struct s_life
@@ -32,8 +50,18 @@ typedef struct s_life
 	int				time_to_eat;
 	int				time_to_sleep;
 	int				eat_num;
+	pthread_t		deaththread;
+	// pthread_mutex_t	varlock;
+	// int				philoptr;
 }				t_life;
 
-int	ft_atoi(const char *s);
+int			ft_atoi(const char *s);
+long long	ft_time(void);
+void		msleep(int n);
+void		philo_eat(t_philo *philo);
+void		philo_think(t_philo *philo);
+void		philo_sleep(t_philo *philo);
+// void		*check_death(void *life_axed);
+void		check_death(t_life *life);
 
 #endif
