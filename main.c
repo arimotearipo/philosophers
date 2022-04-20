@@ -6,7 +6,7 @@
 /*   By: wwan-taj <wwan-taj@student.42kl.edu.my>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/16 17:44:15 by wwan-taj          #+#    #+#             */
-/*   Updated: 2022/04/19 21:05:14 by wwan-taj         ###   ########.fr       */
+/*   Updated: 2022/04/20 15:10:15 by wwan-taj         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,22 +17,18 @@ void	*routine(void	*philo_axed)
 	t_philo		*philo;
 
 	philo = (t_philo *)philo_axed;
-	// printf("Time entered %lld\n", ft_time());
-	while (1)
-	;
-	// philo->lastate = ft_time();
-	// while (philo->life->death == 0)
-	// {	
-	// 	philo_think(philo);
-	// 	pthread_mutex_lock(&(philo->lock));
-	// 	pthread_mutex_lock(philo->nextlock);
-	// 	printf(BLU "%lld %d has taken a fork\n", ft_time(), philo->id);
-	// 	printf(BLU "%lld %d has taken a fork\n", ft_time(), philo->id);
-	// 	philo_eat(philo);
-	// 	pthread_mutex_unlock(&(philo->lock));
-	// 	pthread_mutex_unlock(philo->nextlock);
-	// 	philo_sleep(philo);
-	// }
+	while (philo->life->death == 0)
+	{	
+		philo_think(philo);
+		pthread_mutex_lock(&(philo->lock));
+		pthread_mutex_lock(philo->nextlock);
+		printf(BLU "%lld %d has taken a fork\n", ft_time(), philo->id);
+		printf(BLU "%lld %d has taken a fork\n", ft_time(), philo->id);
+		philo_eat(philo);
+		pthread_mutex_unlock(&(philo->lock));
+		pthread_mutex_unlock(philo->nextlock);
+		philo_sleep(philo);
+	}
 	return (NULL);
 }
 
@@ -64,8 +60,6 @@ void	create_threads(t_life *life)
 
 void	set_rules(t_life *life, int	ac, char **av)
 {
-	int	i;
-
 	life->death = 0;
 	life->philo_num = ft_atoi(av[1]);
 	life->time_to_die = ft_atoi(av[2]);
@@ -74,13 +68,16 @@ void	set_rules(t_life *life, int	ac, char **av)
 	life->eat_num = -1;
 	if (ac == 6)
 		life->eat_num = ft_atoi(av[5]);
+}
+
+void	set_philos(t_life *life)
+{
+	int	i;
+	
 	life->philos = malloc(sizeof(t_philo*) * life->philo_num);
 	i = 0;
 	while (i < life->philo_num)
-	{
-		pthread_mutex_init(&(life->philos[i].lock), NULL);
-		i++;
-	}
+		pthread_mutex_init(&(life->philos[i++].lock), NULL);
 	i = 0;
 	while (i < life->philo_num)
 	{
@@ -93,7 +90,7 @@ void	set_rules(t_life *life, int	ac, char **av)
 	}
 }
 
-void	destroy_mutex(t_life	*life)
+void	destroy_mutex(t_life *life)
 {
 	int	i;
 
@@ -112,11 +109,12 @@ int	main(int ac, char **av)
 	if (ac == 5 || ac == 6)
 	{
 		set_rules(&life, ac, av);
+		set_philos(&life);
 		create_threads(&life);
 		// while (1)
 		// {
 		// 	if (!check_death(&life))
-		// 		return (0);
+		// 		break ;
 		// }
 		join_threads(&life);
 		destroy_mutex(&life);

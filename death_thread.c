@@ -6,7 +6,7 @@
 /*   By: wwan-taj <wwan-taj@student.42kl.edu.my>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/19 18:19:30 by wwan-taj          #+#    #+#             */
-/*   Updated: 2022/04/19 20:58:51 by wwan-taj         ###   ########.fr       */
+/*   Updated: 2022/04/20 15:35:17 by wwan-taj         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ void	*check_death(void *life_axed)
 			if ((now - life->philos[i].lastate) >= life->time_to_die)
 			{
 				printf(RED "%lld %d died\n", now, i);
-				return (NULL);
+				life->death = 1;
 			}
 		}
 	}
@@ -44,8 +44,6 @@ void	*check_death(void *life_axed)
 // 	now = ft_time();
 // 	while (i < life->philo_num)
 // 	{	
-// 		// printf("entered\n");
-// 		printf("%lld - %lld = %lld\n", now, life->philos[i].lastate, now - life->philos[i].lastate);
 // 		if ((now - life->philos[i].lastate) >= life->time_to_die)
 // 		{
 // 			printf(RED "%lld %d died\n", now, i);

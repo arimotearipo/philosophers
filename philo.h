@@ -6,7 +6,7 @@
 /*   By: wwan-taj <wwan-taj@student.42kl.edu.my>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/16 17:43:55 by wwan-taj          #+#    #+#             */
-/*   Updated: 2022/04/19 20:55:38 by wwan-taj         ###   ########.fr       */
+/*   Updated: 2022/04/20 15:29:54 by wwan-taj         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,6 +60,8 @@ void		msleep(int n);
 void		philo_eat(t_philo *philo);
 void		philo_think(t_philo *philo);
 void		philo_sleep(t_philo *philo);
+void		set_rules(t_life *life, int	ac, char **av);
+void		set_philos(t_life *life);
 void		*check_death(void *life_axed);
 // int			check_death(t_life *life);
 
