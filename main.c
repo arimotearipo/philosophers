@@ -6,7 +6,7 @@
 /*   By: wwan-taj <wwan-taj@student.42kl.edu.my>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/16 17:44:15 by wwan-taj          #+#    #+#             */
-/*   Updated: 2022/04/21 12:42:08 by wwan-taj         ###   ########.fr       */
+/*   Updated: 2022/04/21 23:58:48 by wwan-taj         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,7 @@ void	*routine(void	*philo_axed)
 		pthread_mutex_unlock(&(philo->lock));
 		pthread_mutex_unlock(philo->nextlock);
 		philo_sleep(philo);
+		printf(GRN "VALUE OF DEATH: %d\n", philo->life->death);
 	}
 	return (NULL);
 }
@@ -42,9 +43,9 @@ void	join_threads(t_life	*life)
 	while (i < life->philo_num)
 	{
 		pthread_join(life->philos[i].thread, NULL);
+		pthread_join(life->rip[i].reaper, NULL);
 		i++;
 	}
-	pthread_join(life->deaththread, NULL);
 }
 
 void	create_threads(t_life *life)
@@ -54,40 +55,10 @@ void	create_threads(t_life *life)
 	i = 0;
 	while (i < life->philo_num)
 	{
-		pthread_create(&(life->philos[i].thread), NULL, &routine, &(life->philos[i]));
-		i++;
-	}
-	pthread_create(&(life->deaththread), NULL, &check_death, life);
-}
-
-void	set_rules(t_life *life, int	ac, char **av)
-{
-	life->death = 0;
-	life->philo_num = ft_atoi(av[1]);
-	life->time_to_die = ft_atoi(av[2]);
-	life->time_to_eat = ft_atoi(av[3]);
-	life->time_to_sleep = ft_atoi(av[4]);
-	life->eat_num = -1;
-	if (ac == 6)
-		life->eat_num = ft_atoi(av[5]);
-}
-
-void	set_philos(t_life *life)
-{
-	int	i;
-	
-	life->philos = malloc(sizeof(t_philo*) * life->philo_num);
-	i = 0;
-	while (i < life->philo_num)
-		pthread_mutex_init(&(life->philos[i++].lock), NULL);
-	i = 0;
-	while (i < life->philo_num)
-	{
-		life->philos[i].id = i;
-		life->philos[i].dead = 0;
-		life->philos[i].eaten = 0;
-		life->philos[i].life = life;
-		life->philos[i].nextlock = &(life->philos[(i + 1) % life->philo_num].lock);
+		pthread_create(&(life->philos[i].thread),
+			NULL, &routine, &(life->philos[i]));
+		pthread_create(&(life->rip[i].reaper),
+			NULL, &check_death, &(life->rip[i]));
 		i++;
 	}
 }
@@ -112,14 +83,12 @@ int	main(int ac, char **av)
 	{
 		set_rules(&life, ac, av);
 		set_philos(&life);
+		set_grimreaper(&life);
 		create_threads(&life);
-		// while (1)
-		// {
-		// 	if (!check_death(&life))
-		// 		break ;
-		// }
 		join_threads(&life);
 		destroy_mutex(&life);
+		free(life.philos);
+		free(life.rip);
 		return (0);
 	}
 	printf("./philo philo_num time_to_die time_to_eat time_to_sleep [number_of_times_each_philosopher_must_eat]");

@@ -6,7 +6,7 @@
 /*   By: wwan-taj <wwan-taj@student.42kl.edu.my>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/16 17:43:55 by wwan-taj          #+#    #+#             */
-/*   Updated: 2022/04/21 12:38:52 by wwan-taj         ###   ########.fr       */
+/*   Updated: 2022/04/21 23:51:42 by wwan-taj         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,13 @@
 # define CYN "\033[0;36m"
 # define WHT "\e[0;37m"
 
+typedef struct s_grimreaper
+{
+	pthread_t		reaper;
+	struct s_life	*life;
+	struct s_philo	*philo;
+}				t_grimreaper;
+
 typedef struct s_philo
 {
 	int				id;
@@ -46,13 +53,13 @@ typedef struct s_philo
 typedef struct s_life
 {
 	t_philo			*philos;
+	t_grimreaper	*rip;
 	int				philo_num;
 	int				time_to_die;
 	int				time_to_eat;
 	int				time_to_sleep;
 	int				eat_num;
 	int				death;
-	pthread_t		deaththread;
 }				t_life;
 
 int			ft_atoi(const char *s);
@@ -63,6 +70,7 @@ void		philo_think(t_philo *philo);
 void		philo_sleep(t_philo *philo);
 void		set_rules(t_life *life, int	ac, char **av);
 void		set_philos(t_life *life);
+void		set_grimreaper(t_life *life);
 void		*check_death(void *life_axed);
 // int			check_death(t_life *life);
 

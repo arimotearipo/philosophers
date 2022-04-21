@@ -6,7 +6,7 @@
 /*   By: wwan-taj <wwan-taj@student.42kl.edu.my>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/20 15:29:24 by wwan-taj          #+#    #+#             */
-/*   Updated: 2022/04/21 12:39:25 by wwan-taj         ###   ########.fr       */
+/*   Updated: 2022/04/21 23:33:05 by wwan-taj         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,11 +24,25 @@ void	set_rules(t_life *life, int	ac, char **av)
 		life->eat_num = ft_atoi(av[5]);
 }
 
+void	set_grimreaper(t_life *life)
+{
+	int	i;
+
+	life->rip = malloc(sizeof(t_grimreaper) * life->philo_num);
+	i = 0;
+	while (i < life->philo_num)
+	{
+		life->rip[i].life = life;
+		life->rip[i].philo = &(life->philos[i]);
+		i++;
+	}
+}
+
 void	set_philos(t_life *life)
 {
 	int	i;
 	
-	life->philos = malloc(sizeof(t_philo*) * life->philo_num);
+	life->philos = malloc(sizeof(t_philo) * life->philo_num);
 	i = 0;
 	while (i < life->philo_num)
 		pthread_mutex_init(&(life->philos[i++].lock), NULL);
