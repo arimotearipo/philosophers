@@ -1,4 +1,4 @@
-SRCS = main.c ft_atoi.c activity.c time.c death_thread.c setstructs.c
+SRCS = main.c ft_atoi.c activity.c time.c threadfunctions.c setstructs.c
 
 OBJS = $(SRCS:.c=.o)
 

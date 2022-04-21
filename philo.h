@@ -6,7 +6,7 @@
 /*   By: wwan-taj <wwan-taj@student.42kl.edu.my>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/16 17:43:55 by wwan-taj          #+#    #+#             */
-/*   Updated: 2022/04/22 01:06:06 by wwan-taj         ###   ########.fr       */
+/*   Updated: 2022/04/22 01:18:00 by wwan-taj         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,6 +70,7 @@ void		philo_sleep(t_philo *philo);
 void		set_rules(t_life *life, int	ac, char **av);
 void		set_philos(t_life *life);
 void		set_grimreaper(t_life *life);
+void		*routine(void	*philo_axed);
 void		*check_death(void *life_axed);
 
 #endif
