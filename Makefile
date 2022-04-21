@@ -13,7 +13,7 @@ NAME = philo
 all:		$(NAME)
 
 $(NAME):	$(SRCS)
-			$(CC) $(FLAGS) $(SRCS) -o $(NAME)
+			$(CC) $(FLAGS) $(SRCS) -pthread -o $(NAME)
 
 clean:	
 			$(RM) $(OBJS)

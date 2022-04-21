@@ -6,7 +6,7 @@
 /*   By: wwan-taj <wwan-taj@student.42kl.edu.my>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/16 17:43:55 by wwan-taj          #+#    #+#             */
-/*   Updated: 2022/04/20 15:29:54 by wwan-taj         ###   ########.fr       */
+/*   Updated: 2022/04/21 12:38:52 by wwan-taj         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,7 @@ typedef struct s_philo
 	int				id;
 	long long		starttime;
 	long long		lastate;
+	int				eating;
 	int				dead;
 	int				eaten;
 	struct s_life	*life;

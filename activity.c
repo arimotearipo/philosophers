@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   routine.c                                          :+:      :+:    :+:   */
+/*   activity.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: wwan-taj <wwan-taj@student.42kl.edu.my>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/19 16:11:21 by wwan-taj          #+#    #+#             */
-/*   Updated: 2022/04/19 19:09:39 by wwan-taj         ###   ########.fr       */
+/*   Updated: 2022/04/21 12:41:18 by wwan-taj         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,8 +15,9 @@
 void	philo_eat(t_philo *philo)
 {
 	long long	time;
-
+	
 	time = ft_time();
+	philo->eating = 1;
 	philo->lastate = time;
 	philo->eaten += 1;
 	printf(YEL "%lld %d is eating\n", time, philo->id);

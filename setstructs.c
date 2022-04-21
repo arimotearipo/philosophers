@@ -6,7 +6,7 @@
 /*   By: wwan-taj <wwan-taj@student.42kl.edu.my>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/20 15:29:24 by wwan-taj          #+#    #+#             */
-/*   Updated: 2022/04/20 15:29:35 by wwan-taj         ###   ########.fr       */
+/*   Updated: 2022/04/21 12:39:25 by wwan-taj         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,7 @@ void	set_philos(t_life *life)
 	{
 		life->philos[i].id = i;
 		life->philos[i].dead = 0;
+		life->philos[i].eating = 0;
 		life->philos[i].eaten = 0;
 		life->philos[i].life = life;
 		life->philos[i].nextlock = &(life->philos[(i + 1) % life->philo_num].lock);

@@ -6,7 +6,7 @@
 /*   By: wwan-taj <wwan-taj@student.42kl.edu.my>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/16 17:44:15 by wwan-taj          #+#    #+#             */
-/*   Updated: 2022/04/20 15:10:15 by wwan-taj         ###   ########.fr       */
+/*   Updated: 2022/04/21 12:42:08 by wwan-taj         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,8 @@ void	*routine(void	*philo_axed)
 	while (philo->life->death == 0)
 	{	
 		philo_think(philo);
+		if (philo->id % 2 == 0)
+			usleep(200);
 		pthread_mutex_lock(&(philo->lock));
 		pthread_mutex_lock(philo->nextlock);
 		printf(BLU "%lld %d has taken a fork\n", ft_time(), philo->id);
