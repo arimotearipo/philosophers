@@ -6,7 +6,7 @@
 /*   By: wwan-taj <wwan-taj@student.42kl.edu.my>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/20 15:29:24 by wwan-taj          #+#    #+#             */
-/*   Updated: 2022/04/21 23:33:05 by wwan-taj         ###   ########.fr       */
+/*   Updated: 2022/04/22 00:58:06 by wwan-taj         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ void	set_grimreaper(t_life *life)
 void	set_philos(t_life *life)
 {
 	int	i;
-	
+
 	life->philos = malloc(sizeof(t_philo) * life->philo_num);
 	i = 0;
 	while (i < life->philo_num)
@@ -54,7 +54,8 @@ void	set_philos(t_life *life)
 		life->philos[i].eating = 0;
 		life->philos[i].eaten = 0;
 		life->philos[i].life = life;
-		life->philos[i].nextlock = &(life->philos[(i + 1) % life->philo_num].lock);
+		life->philos[i].nextlock
+			= &(life->philos[(i + 1) % life->philo_num].lock);
 		i++;
 	}
 }

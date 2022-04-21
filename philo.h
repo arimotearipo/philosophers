@@ -6,7 +6,7 @@
 /*   By: wwan-taj <wwan-taj@student.42kl.edu.my>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/16 17:43:55 by wwan-taj          #+#    #+#             */
-/*   Updated: 2022/04/21 23:51:42 by wwan-taj         ###   ########.fr       */
+/*   Updated: 2022/04/22 00:55:40 by wwan-taj         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,6 +65,7 @@ typedef struct s_life
 int			ft_atoi(const char *s);
 long long	ft_time(void);
 void		msleep(int n);
+void		philo_takefork(t_philo *philo);
 void		philo_eat(t_philo *philo);
 void		philo_think(t_philo *philo);
 void		philo_sleep(t_philo *philo);
@@ -72,6 +73,5 @@ void		set_rules(t_life *life, int	ac, char **av);
 void		set_philos(t_life *life);
 void		set_grimreaper(t_life *life);
 void		*check_death(void *life_axed);
-// int			check_death(t_life *life);
 
 #endif

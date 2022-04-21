@@ -6,7 +6,7 @@
 /*   By: wwan-taj <wwan-taj@student.42kl.edu.my>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/16 17:44:15 by wwan-taj          #+#    #+#             */
-/*   Updated: 2022/04/21 23:58:48 by wwan-taj         ###   ########.fr       */
+/*   Updated: 2022/04/22 00:56:58 by wwan-taj         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,20 +17,19 @@ void	*routine(void	*philo_axed)
 	t_philo		*philo;
 
 	philo = (t_philo *)philo_axed;
-	while (philo->life->death == 0)
+	while (philo->life->death == 0 && philo->eaten != philo->life->eat_num)
 	{	
 		philo_think(philo);
 		if (philo->id % 2 == 0)
 			usleep(200);
 		pthread_mutex_lock(&(philo->lock));
 		pthread_mutex_lock(philo->nextlock);
-		printf(BLU "%lld %d has taken a fork\n", ft_time(), philo->id);
-		printf(BLU "%lld %d has taken a fork\n", ft_time(), philo->id);
+		philo_takefork(philo);
+		philo_takefork(philo);
 		philo_eat(philo);
 		pthread_mutex_unlock(&(philo->lock));
 		pthread_mutex_unlock(philo->nextlock);
 		philo_sleep(philo);
-		printf(GRN "VALUE OF DEATH: %d\n", philo->life->death);
 	}
 	return (NULL);
 }
@@ -91,7 +90,5 @@ int	main(int ac, char **av)
 		free(life.rip);
 		return (0);
 	}
-	printf("./philo philo_num time_to_die time_to_eat time_to_sleep [number_of_times_each_philosopher_must_eat]");
-	// system("leaks philo");
 	return (0);
 }
