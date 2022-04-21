@@ -6,7 +6,7 @@
 /*   By: wwan-taj <wwan-taj@student.42kl.edu.my>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/16 17:44:15 by wwan-taj          #+#    #+#             */
-/*   Updated: 2022/04/22 00:56:58 by wwan-taj         ###   ########.fr       */
+/*   Updated: 2022/04/22 01:03:02 by wwan-taj         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,8 +23,8 @@ void	*routine(void	*philo_axed)
 		if (philo->id % 2 == 0)
 			usleep(200);
 		pthread_mutex_lock(&(philo->lock));
-		pthread_mutex_lock(philo->nextlock);
 		philo_takefork(philo);
+		pthread_mutex_lock(philo->nextlock);
 		philo_takefork(philo);
 		philo_eat(philo);
 		pthread_mutex_unlock(&(philo->lock));

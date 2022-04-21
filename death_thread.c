@@ -6,18 +6,11 @@
 /*   By: wwan-taj <wwan-taj@student.42kl.edu.my>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/19 18:19:30 by wwan-taj          #+#    #+#             */
-/*   Updated: 2022/04/22 00:55:57 by wwan-taj         ###   ########.fr       */
+/*   Updated: 2022/04/22 01:07:33 by wwan-taj         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
-
-int	philo_died(t_philo *philo, long long now)
-{
-	if ((now - philo->lastate) >= philo->life->time_to_die)
-		return (1);
-	return (0);
-}
 
 void	*check_death(void *grimreaper_axed)
 {

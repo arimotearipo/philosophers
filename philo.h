@@ -6,7 +6,7 @@
 /*   By: wwan-taj <wwan-taj@student.42kl.edu.my>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/16 17:43:55 by wwan-taj          #+#    #+#             */
-/*   Updated: 2022/04/22 00:55:40 by wwan-taj         ###   ########.fr       */
+/*   Updated: 2022/04/22 01:06:06 by wwan-taj         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,10 +39,8 @@ typedef struct s_grimreaper
 typedef struct s_philo
 {
 	int				id;
-	long long		starttime;
 	long long		lastate;
 	int				eating;
-	int				dead;
 	int				eaten;
 	struct s_life	*life;
 	pthread_t		thread;

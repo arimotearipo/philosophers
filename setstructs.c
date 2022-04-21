@@ -6,7 +6,7 @@
 /*   By: wwan-taj <wwan-taj@student.42kl.edu.my>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/20 15:29:24 by wwan-taj          #+#    #+#             */
-/*   Updated: 2022/04/22 00:58:06 by wwan-taj         ###   ########.fr       */
+/*   Updated: 2022/04/22 01:07:50 by wwan-taj         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,6 @@ void	set_philos(t_life *life)
 	while (i < life->philo_num)
 	{
 		life->philos[i].id = i;
-		life->philos[i].dead = 0;
 		life->philos[i].eating = 0;
 		life->philos[i].eaten = 0;
 		life->philos[i].life = life;
