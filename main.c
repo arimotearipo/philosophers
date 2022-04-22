@@ -6,7 +6,7 @@
 /*   By: wwan-taj <wwan-taj@student.42kl.edu.my>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/16 17:44:15 by wwan-taj          #+#    #+#             */
-/*   Updated: 2022/04/22 01:17:33 by wwan-taj         ###   ########.fr       */
+/*   Updated: 2022/04/22 12:35:20 by wwan-taj         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ void	join_threads(t_life	*life)
 	while (i < life->philo_num)
 	{
 		pthread_join(life->philos[i].thread, NULL);
-		pthread_join(life->rip[i].reaper, NULL);
+		pthread_join(life->philos[i].reaper, NULL);
 		i++;
 	}
 }
@@ -34,8 +34,8 @@ void	create_threads(t_life *life)
 	{
 		pthread_create(&(life->philos[i].thread),
 			NULL, &routine, &(life->philos[i]));
-		pthread_create(&(life->rip[i].reaper),
-			NULL, &check_death, &(life->rip[i]));
+		pthread_create(&(life->philos[i].reaper),
+			NULL, &check_death, &(life->philos[i]));
 		i++;
 	}
 }
@@ -60,12 +60,10 @@ int	main(int ac, char **av)
 	{
 		set_rules(&life, ac, av);
 		set_philos(&life);
-		set_grimreaper(&life);
 		create_threads(&life);
 		join_threads(&life);
 		destroy_mutex(&life);
 		free(life.philos);
-		free(life.rip);
 		return (0);
 	}
 	return (0);

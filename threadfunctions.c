@@ -1,32 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   death_thread.c                                     :+:      :+:    :+:   */
+/*   threadfunctions.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: wwan-taj <wwan-taj@student.42kl.edu.my>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/19 18:19:30 by wwan-taj          #+#    #+#             */
-/*   Updated: 2022/04/22 01:17:36 by wwan-taj         ###   ########.fr       */
+/*   Updated: 2022/04/22 12:49:20 by wwan-taj         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
 
-void	*check_death(void *grimreaper_axed)
+void	*check_death(void *philo_axed)
 {
-	t_grimreaper	*rip;
+	t_philo			*philo;
 	long long		now;
 
-	rip = (t_grimreaper *)grimreaper_axed;
-	msleep(rip->life->time_to_die);
-	while (rip->life->death == 0 && rip->philo->eaten != rip->life->eat_num)
+	philo = (t_philo *)philo_axed;
+	msleep(philo->life->time_to_die);
+	while (philo->life->death == 0 && philo->eaten != philo->life->eat_num)
 	{
 		now = ft_time();
-		if ((now - rip->philo->lastate) > rip->life->time_to_die
-			&& rip->philo->eating == 0)
+		if ((now - philo->lastate) > philo->life->time_to_die
+			&& philo->eating == 0)
 		{
-			printf(RED "%lld %d died\n", now, rip->philo->id);
-			rip->life->death = 1;
+			printf(RED "%lld %d died\n", now, philo->id);
+			philo->life->death = 1;
 		}
 	}
 	return (NULL);
@@ -44,6 +44,8 @@ void	*routine(void	*philo_axed)
 			usleep(200);
 		pthread_mutex_lock(&(philo->lock));
 		philo_takefork(philo);
+		if (philo->nextlock == &(philo->lock))
+			break ;
 		pthread_mutex_lock(philo->nextlock);
 		philo_takefork(philo);
 		philo_eat(philo);
