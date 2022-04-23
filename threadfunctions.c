@@ -6,7 +6,7 @@
 /*   By: wwan-taj <wwan-taj@student.42kl.edu.my>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/19 18:19:30 by wwan-taj          #+#    #+#             */
-/*   Updated: 2022/04/22 12:49:20 by wwan-taj         ###   ########.fr       */
+/*   Updated: 2022/04/22 16:31:50 by wwan-taj         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,8 +40,8 @@ void	*routine(void	*philo_axed)
 	while (philo->life->death == 0 && philo->eaten != philo->life->eat_num)
 	{	
 		philo_think(philo);
-		if (philo->id % 2 == 0 && philo->eaten == 0)
-			usleep(200);
+		if (philo->id % 2 != 0 && philo->eaten == 0)
+			usleep(philo->life->philo_num * 100);
 		pthread_mutex_lock(&(philo->lock));
 		philo_takefork(philo);
 		if (philo->nextlock == &(philo->lock))
