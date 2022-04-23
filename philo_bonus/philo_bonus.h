@@ -25,6 +25,8 @@ typedef struct s_philo
 	int				died;
 	int				eating;
 	int				id;
+	sem_t			lock;
+	sem_t			nextlock;
 	struct s_life	*life;
 }	t_philo;
 
@@ -37,15 +39,17 @@ typedef struct s_life
 	int		eat_num;
 	int		death;
 	t_philo	*philos;
-	sem_t	lock;
+	sem_t	**locks;
 }	t_life;
 
 int			ft_atoi(const char *s);
+char		*ft_itoa(int n);
 long long	ft_time(void);
 void		msleep(int n);
 void		philo_sleep(t_philo *philo);
 void		philo_think(t_philo *philo);
 void		philo_eat(t_philo *philo);
 void		philo_takefork(t_philo *philo);
+char		*ft_strjoin(char const *s1, char const *s2);
 
 #endif
