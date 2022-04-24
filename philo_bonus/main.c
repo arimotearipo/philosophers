@@ -6,7 +6,7 @@
 /*   By: wwan-taj <wwan-taj@student.42kl.edu.my>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/23 13:57:22 by wwan-taj          #+#    #+#             */
-/*   Updated: 2022/04/24 16:05:44 by wwan-taj         ###   ########.fr       */
+/*   Updated: 2022/04/24 17:50:35 by wwan-taj         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,7 @@ void	routine(t_philo *philo)
 		sem_post(philo->nextlock);
 		i++;
 	}
+	exit(0);
 }
 
 void	set_philo(t_life *life, int i)
@@ -55,6 +56,7 @@ void	create_processes(t_life *life)
 		{
 			set_philo(life, i);
 			routine(&life->philos[i]);
+			exit(0);
 		}
 		i++;
 	}
@@ -69,6 +71,7 @@ void	set_structs(t_life *life, int ac, char **av)
 	life->eat_num = -1;
 	life->death = 0;
 	life->philos = malloc(sizeof(t_philo) * life->philo_num);
+	life->procs = malloc(sizeof(pid_t *) * life->philo_num);
 	createforks(life);
 	if (ac == 6)
 		life->eat_num = ft_atoi(av[5]);

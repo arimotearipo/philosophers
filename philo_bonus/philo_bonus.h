@@ -38,6 +38,7 @@ typedef struct s_life
 	int		time_to_sleep;
 	int		eat_num;
 	int		death;
+	pid_t	*procs;
 	t_philo	*philos;
 	sem_t	**locks;
 }	t_life;
