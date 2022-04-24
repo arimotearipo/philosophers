@@ -1,4 +1,4 @@
-SRCS = main.c ft_atoi.c activity.c time.c ft_atoi.c ft_itoa.c ft_strjoin.c
+SRCS = main.c ft_atoi.c activity.c time.c ft_itoa.c ft_strjoin.c \
 
 OBJS = $(SRCS:.c=.o)
 
@@ -13,7 +13,7 @@ NAME = philo_bonus
 all:		$(NAME)
 
 $(NAME):	$(SRCS)
-			$(CC) $(FLAGS) $(SRCS) -lpthread -o $(NAME)
+			$(CC) $(FLAGS) $(SRCS) -o $(NAME)
 
 clean:	
 			$(RM) $(OBJS)
