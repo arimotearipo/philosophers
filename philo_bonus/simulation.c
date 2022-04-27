@@ -6,7 +6,7 @@
 /*   By: wwan-taj <wwan-taj@student.42kl.edu.my>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/23 13:57:22 by wwan-taj          #+#    #+#             */
-/*   Updated: 2022/04/27 16:12:10 by wwan-taj         ###   ########.fr       */
+/*   Updated: 2022/04/27 16:48:06 by wwan-taj         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,7 @@ void	*death(void *life_axed)
 	msleep(life->time_to_die, ft_time());
 	while (life->death == 0 && life->eaten != life->eat_num)
 	{
+		usleep(100);
 		now = ft_time();
 		if ((now - life->lastate) > life->time_to_die
 			&& life->eating == 0)

@@ -6,7 +6,7 @@
 /*   By: wwan-taj <wwan-taj@student.42kl.edu.my>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/19 18:19:30 by wwan-taj          #+#    #+#             */
-/*   Updated: 2022/04/27 16:37:01 by wwan-taj         ###   ########.fr       */
+/*   Updated: 2022/04/27 16:47:11 by wwan-taj         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,7 @@ void	*check_death(void *philo_axed)
 	msleep(philo->life->time_to_die, ft_time());
 	while (philo->life->death == 0 && philo->eaten != philo->life->eat_num)
 	{
+		usleep(100);
 		now = ft_time();
 		if ((now - philo->lastate) > philo->life->time_to_die
 			&& philo->eating == 0)
