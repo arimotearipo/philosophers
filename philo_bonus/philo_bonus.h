@@ -6,7 +6,9 @@
 # include <stdlib.h>
 # include <unistd.h>
 # include <stdio.h>
+# include <fcntl.h>
 # include <sys/time.h>
+# include <sys/sem.h>
 
 # define BLK "\033[0;30m"
 # define RED "\033[0;31m"

@@ -13,7 +13,7 @@ NAME = philo_bonus
 all:		$(NAME)
 
 $(NAME):	$(SRCS)
-			$(CC) $(FLAGS) $(SRCS) -o $(NAME)
+			$(CC) $(FLAGS) $(SRCS) -lpthread -o $(NAME)
 
 clean:	
 			$(RM) $(OBJS)
