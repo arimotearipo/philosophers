@@ -6,18 +6,18 @@
 /*   By: wwan-taj <wwan-taj@student.42kl.edu.my>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/27 11:08:20 by wwan-taj          #+#    #+#             */
-/*   Updated: 2022/04/27 15:46:46 by wwan-taj         ###   ########.fr       */
+/*   Updated: 2022/04/27 15:46:36 by wwan-taj         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "philo.h"
+#include "philo_bonus.h"
 
 static int	checkinputnumber(int ac, char **av)
 {
 	(void)av;
 	if (ac != 5 && ac != 6)
 	{
-		printf("Error: Needs to be 4 or 5 inputs\n");
+		printf("Error: Need to have 4 or 5 inputs\n");
 		return (0);
 	}
 	return (1);

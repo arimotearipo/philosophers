@@ -6,7 +6,7 @@
 /*   By: wwan-taj <wwan-taj@student.42kl.edu.my>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/16 17:44:15 by wwan-taj          #+#    #+#             */
-/*   Updated: 2022/04/27 11:55:48 by wwan-taj         ###   ########.fr       */
+/*   Updated: 2022/04/27 16:31:25 by wwan-taj         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,6 +50,7 @@ void	destroy_mutex(t_life *life)
 		pthread_mutex_destroy(&(life->philos[i].lock));
 		i++;
 	}
+	pthread_mutex_destroy(&(life->print));
 }
 
 int	main(int ac, char **av)

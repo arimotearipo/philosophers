@@ -1,4 +1,4 @@
-SRCS = main.c ft_atoi.c activity.c time.c ft_itoa.c ft_strjoin.c errorchecking.c \
+SRCS = main.c ft_atoi.c activity.c time.c ft_itoa.c ft_strjoin.c errorchecking.c simulation.c \
 
 OBJS = $(SRCS:.c=.o)
 

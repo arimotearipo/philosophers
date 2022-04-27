@@ -6,7 +6,7 @@
 /*   By: wwan-taj <wwan-taj@student.42kl.edu.my>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/16 17:43:55 by wwan-taj          #+#    #+#             */
-/*   Updated: 2022/04/27 12:03:58 by wwan-taj         ###   ########.fr       */
+/*   Updated: 2022/04/27 16:37:11 by wwan-taj         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,6 +45,7 @@ typedef struct s_philo
 
 typedef struct s_life
 {
+	pthread_mutex_t	print;
 	t_philo			*philos;
 	int				philo_num;
 	int				time_to_die;
@@ -57,7 +58,7 @@ typedef struct s_life
 int			errorcheck(int ac, char **av);
 long		ft_atoi(const char *s);
 long long	ft_time(void);
-void		msleep(int n);
+void		msleep(int n, long long start);
 void		philo_takefork(t_philo *philo);
 void		philo_eat(t_philo *philo);
 void		philo_think(t_philo *philo);

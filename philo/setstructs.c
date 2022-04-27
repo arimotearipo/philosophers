@@ -6,7 +6,7 @@
 /*   By: wwan-taj <wwan-taj@student.42kl.edu.my>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/20 15:29:24 by wwan-taj          #+#    #+#             */
-/*   Updated: 2022/04/27 11:32:42 by wwan-taj         ###   ########.fr       */
+/*   Updated: 2022/04/27 16:33:35 by wwan-taj         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,7 @@ void	set_philos(t_life *life)
 	i = 0;
 	while (i < life->philo_num)
 		pthread_mutex_init(&(life->philos[i++].lock), NULL);
+	pthread_mutex_init(&(life->print), NULL);
 	i = 0;
 	while (i < life->philo_num)
 	{

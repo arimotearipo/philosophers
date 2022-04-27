@@ -6,17 +6,17 @@
 /*   By: wwan-taj <wwan-taj@student.42kl.edu.my>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/16 19:01:30 by wwan-taj          #+#    #+#             */
-/*   Updated: 2022/04/23 15:28:37 by wwan-taj         ###   ########.fr       */
+/*   Updated: 2022/04/27 12:36:08 by wwan-taj         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo_bonus.h"
 
-int	ft_atoi(const char *s)
+long	ft_atoi(const char *s)
 {
-	int			i;
-	long int	neg;
-	long int	sum;
+	int		i;
+	long	neg;
+	long	sum;
 
 	i = 0;
 	sum = 0;
