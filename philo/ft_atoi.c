@@ -6,17 +6,17 @@
 /*   By: wwan-taj <wwan-taj@student.42kl.edu.my>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/16 19:01:30 by wwan-taj          #+#    #+#             */
-/*   Updated: 2022/04/19 18:11:56 by wwan-taj         ###   ########.fr       */
+/*   Updated: 2022/04/27 12:03:42 by wwan-taj         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
 
-int	ft_atoi(const char *s)
+long	ft_atoi(const char *s)
 {
-	int			i;
-	long int	neg;
-	long int	sum;
+	int		i;
+	long	neg;
+	long	sum;
 
 	i = 0;
 	sum = 0;

@@ -1,5 +1,7 @@
 {
 	"files.associations": {
-		"__locale": "c"
+		"__locale": "c",
+		"limits.h": "c",
+		"stdlib.h": "c"
 	}
 }

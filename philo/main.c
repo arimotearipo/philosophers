@@ -6,7 +6,7 @@
 /*   By: wwan-taj <wwan-taj@student.42kl.edu.my>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/16 17:44:15 by wwan-taj          #+#    #+#             */
-/*   Updated: 2022/04/22 12:35:20 by wwan-taj         ###   ########.fr       */
+/*   Updated: 2022/04/27 11:55:48 by wwan-taj         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,15 +56,13 @@ int	main(int ac, char **av)
 {
 	t_life	life;
 
-	if (ac == 5 || ac == 6)
-	{
-		set_rules(&life, ac, av);
-		set_philos(&life);
-		create_threads(&life);
-		join_threads(&life);
-		destroy_mutex(&life);
-		free(life.philos);
+	if (!errorcheck(ac, av))
 		return (0);
-	}
+	set_rules(&life, ac, av);
+	set_philos(&life);
+	create_threads(&life);
+	join_threads(&life);
+	destroy_mutex(&life);
+	free(life.philos);
 	return (0);
 }

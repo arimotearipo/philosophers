@@ -6,13 +6,14 @@
 /*   By: wwan-taj <wwan-taj@student.42kl.edu.my>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/16 17:43:55 by wwan-taj          #+#    #+#             */
-/*   Updated: 2022/04/22 15:31:21 by wwan-taj         ###   ########.fr       */
+/*   Updated: 2022/04/27 12:03:58 by wwan-taj         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef PHILO_H
 # define PHILO_H
 
+# include <limits.h>
 # include <stdio.h>
 # include <stdlib.h>
 # include <pthread.h>
@@ -53,14 +54,15 @@ typedef struct s_life
 	int				death;
 }				t_life;
 
-int			ft_atoi(const char *s);
+int			errorcheck(int ac, char **av);
+long		ft_atoi(const char *s);
 long long	ft_time(void);
 void		msleep(int n);
 void		philo_takefork(t_philo *philo);
 void		philo_eat(t_philo *philo);
 void		philo_think(t_philo *philo);
 void		philo_sleep(t_philo *philo);
-void		set_rules(t_life *life, int	ac, char **av);
+void		set_rules(t_life *life, int ac, char **av);
 void		set_philos(t_life *life);
 void		set_grimreaper(t_life *life);
 void		*routine(void	*philo_axed);

@@ -6,13 +6,13 @@
 /*   By: wwan-taj <wwan-taj@student.42kl.edu.my>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/20 15:29:24 by wwan-taj          #+#    #+#             */
-/*   Updated: 2022/04/22 13:25:59 by wwan-taj         ###   ########.fr       */
+/*   Updated: 2022/04/27 11:32:42 by wwan-taj         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
 
-void	set_rules(t_life *life, int	ac, char **av)
+void	set_rules(t_life *life, int ac, char **av)
 {
 	life->death = 0;
 	life->philo_num = ft_atoi(av[1]);

@@ -6,7 +6,7 @@
 /*   By: wwan-taj <wwan-taj@student.42kl.edu.my>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/23 13:57:22 by wwan-taj          #+#    #+#             */
-/*   Updated: 2022/04/26 04:03:19 by wwan-taj         ###   ########.fr       */
+/*   Updated: 2022/04/27 11:28:35 by wwan-taj         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -120,14 +120,13 @@ int	main(int ac, char **av)
 {
 	t_life	life;
 
-	if (ac == 5 || ac == 6)
-	{
-		set_structs(&life, ac, av);
-		set_philo(&life);
-		create_processes(&life);
-		closeforks(&life);
-		free(life.philos);
-		free(life.locks);
-	}
+	if (!errorcheck(ac, av))
+		return (0);
+	set_structs(&life, ac, av);
+	set_philo(&life);
+	create_processes(&life);
+	closeforks(&life);
+	free(life.philos);
+	free(life.locks);
 	return (0);
 }

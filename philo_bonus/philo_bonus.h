@@ -2,6 +2,7 @@
 # define PHILO_BONUS_H
 
 # include <pthread.h>
+# include <limits.h>
 # include <semaphore.h>
 # include <stdlib.h>
 # include <unistd.h>
@@ -45,6 +46,7 @@ typedef struct s_life
 	sem_t	**locks;
 }	t_life;
 
+int			errorcheck(int ac, char **av);
 int			ft_atoi(const char *s);
 char		*ft_itoa(int n);
 long long	ft_time(void);
